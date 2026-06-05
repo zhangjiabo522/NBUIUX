@@ -1,153 +1,118 @@
 ---
 name: nbuiux
-description: Premium UI/UX design system - 35 cinematic landing page templates with liquid glass, 3D effects, video backgrounds
+description: Premium landing page design system - 35 cinematic templates with liquid glass, 3D effects, video backgrounds
 license: MIT
 compatibility: opencode
 metadata:
   author: zhangjiabo522
-  version: 3.0.0
+  version: 4.0.0
   templates: 35
 ---
 
 # NBUIUX - Premium Landing Page Generator
 
-## How to Use This Skill
+## Workflow
 
-When user requests a landing page, follow these steps:
+When user requests a landing page:
 
-### Step 1: Ask User Requirements
-Ask user:
-1. What type of project? (SaaS, portfolio, NFT, agency, etc.)
-2. What style? (cinematic, minimal, creative, etc.)
-3. Any specific features? (video background, 3D effects, animations, etc.)
+1. **Ask requirements** - What type? What style? Any specific features?
+2. **Select template** - Use table below to find best match
+3. **Read prompt** - Open `prompts.md`, find the template number
+4. **Generate code** - Follow the prompt, apply design rules
 
-### Step 2: Select Template
-Based on user requirements, select template from the list below:
+## Template Selection
 
-| Template | Name | Type | Best For | Key Features |
-|----------|------|------|----------|--------------|
-| 1 | Jack 3D | Portfolio | 3D creators, artists | Magnetic mouse, scroll animations, 3D images |
-| 2 | Prisma v1 | Studio | Creative agencies | Liquid glass, video bg, bold typography |
-| 3 | Prisma v2 | Studio | Design firms | Same as v2 with variations |
-| 4 | TOONHUB | Carousel | Character/toy brands | 3D carousel, interactive cards |
-| 5 | Space Travel | Cinematic | Travel, luxury | Dual video loop, liquid glass |
-| 6 | Cinematic Hero | Cinematic | Entertainment | Video fade in/out loop |
-| 7 | VEX Brand | Cinematic | Premium brands | Video + liquid glass nav |
-| 8 | Mental Health | SaaS | Health apps | Search pill component |
-| 9 | SkyElite | Luxury | Aviation, luxury | Hamburger menu, overlapping titles |
-| 10 | Mainframe | Agency | Creative agencies | Mouse scrub video, typewriter |
-| 11 | Axion v1 | Agency | Studios | Shader background, effects |
-| 12 | Axion v2 | Agency | Studios | Same with variations |
-| 13 | Mainframe Typewriter | SaaS | Service platforms | Service pills, conditional feedback |
-| 14 | Asme Newsletter | Content | Newsletters | Video fade + email capture |
-| 15 | Asme Full Page | Content | Content platforms | 5 sections: about, video, services |
-| 16 | Asme HLS | SaaS | Tech products | HLS video, email, typewriter |
-| 17 | Michael Smith | Portfolio | Designers | Loading screen, GSAP, parallax gallery |
-| 18 | Orbis NFT | Web3 | NFT marketplaces | Space theme, liquid glass cards |
-| 19 | VaultShield | SaaS | Security products | Icon inline titles, mobile drawer |
-| 20 | Movie Hero | Cinematic | Streaming, entertainment | Bottom blur mask, mobile menu |
-| 21 | Simple Hero | Minimal | Any project | Minimal video background |
-| 22 | LinkFlow | SaaS | Tech products | Boomerang video, mobile menu |
-| 23 | Mindloop | Content | Content platforms | HLS video, scroll-driven text |
-| 24 | RIVR DeFi | Web3 | DeFi dashboards | Custom font, bottom cards |
-| 25 | Viktor Oddy | Agency | Design studios | Infinite scroll, mouse trail, carousel |
-| 26 | CodeNest | Education | Coding bootcamps | HLS, grid lines, liquid glass cards |
-| 27 | Power AI | SaaS | AI products | Large title gradient, logo marquee |
-| 28 | Bloom | SaaS | AI/creative tools | Dual panel, liquid glass layers |
-| 29 | MicroVisuals | Portfolio | Designers | Frame capture boomerang, parallax mouse |
-| 30 | HLS Background | Minimal | Any project | Minimal HLS video |
-| 31 | Fearless Vision | Agency | Creative agencies | Stacked title, fold menu |
-| 32 | Wanderful | Travel | Travel brands | GSAP parallax, boomerang video |
-| 33 | SENTINEL AI | Enterprise | Security companies | Spline 3D background, shadcn |
-| 34 | DesignPro | Education | Design courses | ShinyText gradient sweep |
-| 35 | Prosthetics | E-commerce | Medical products | Minimal hero, dual pill nav |
+| # | Name | Type | For | Features |
+|---|------|------|-----|----------|
+| 1 | Jack 3D | Portfolio | 3D creators | Magnetic mouse, scroll animations |
+| 2-3 | Prisma | Studio | Agencies | Liquid glass, video bg |
+| 4 | TOONHUB | Carousel | Toy brands | 3D carousel |
+| 5 | Space Travel | Cinematic | Travel | Dual video, liquid glass |
+| 6 | Cinematic Hero | Cinematic | Entertainment | Video fade loop |
+| 7 | VEX Brand | Cinematic | Luxury | Video + glass nav |
+| 8 | Mental Health | SaaS | Health apps | Search pill |
+| 9 | SkyElite | Luxury | Aviation | Overlapping titles |
+| 10 | Mainframe | Agency | Creative | Mouse scrub video |
+| 11-12 | Axion | Agency | Studios | Shader bg |
+| 13 | Typewriter | SaaS | Services | Service pills |
+| 14 | Asme Newsletter | Content | Newsletter | Email capture |
+| 15 | Asme Full | Content | Platforms | 5 sections |
+| 16 | Asme HLS | SaaS | Tech | HLS + typewriter |
+| 17 | Michael Smith | Portfolio | Designers | GSAP parallax |
+| 18 | Orbis NFT | Web3 | NFT | Space theme, glass cards |
+| 19 | VaultShield | SaaS | Security | Icon titles |
+| 20 | Movie Hero | Cinematic | Streaming | Blur mask |
+| 21 | Simple Hero | Minimal | Any | Minimal video |
+| 22 | LinkFlow | SaaS | Tech | Boomerang video |
+| 23 | Mindloop | Content | Platforms | Scroll text |
+| 24 | RIVR DeFi | Web3 | DeFi | Custom font |
+| 25 | Viktor Oddy | Agency | Studios | Mouse trail |
+| 26 | CodeNest | Education | Bootcamps | Grid lines |
+| 27 | Power AI | SaaS | AI | Large title |
+| 28 | Bloom | SaaS | AI tools | Dual panel |
+| 29 | MicroVisuals | Portfolio | Designers | Frame capture |
+| 30 | HLS Background | Minimal | Any | HLS video |
+| 31 | Fearless Vision | Agency | Creative | Stacked title |
+| 32 | Wanderful | Travel | Travel | GSAP parallax |
+| 33 | SENTINEL AI | Enterprise | Security | Spline 3D |
+| 34 | DesignPro | Education | Courses | ShinyText |
+| 35 | Prosthetics | E-commerce | Medical | Minimal hero |
 
-### Step 3: Read Template Prompt
-After selecting template, read the corresponding prompt from `prompts.md` file.
+## Quick Match
 
-The `prompts.md` file contains detailed prompts for each template numbered 1-35.
+| User Says | Use Template |
+|-----------|--------------|
+| "AI startup landing page" | 16, 27 |
+| "NFT marketplace" | 18, 24 |
+| "Creative portfolio" | 1, 10, 17, 25 |
+| "Design agency" | 2, 3, 11, 12, 22 |
+| "Luxury brand" | 5, 6, 7, 20 |
+| "SaaS product" | 16, 26, 27, 30 |
+| "Newsletter/content" | 8, 14, 23 |
+| "Travel brand" | 5, 32 |
+| "Security company" | 19, 33 |
+| "Education/course" | 26, 34 |
+| "Minimal/clean" | 21, 30, 35 |
 
-### Step 4: Generate Code
-Generate complete React + Tailwind CSS code based on the prompt, applying these rules:
+## Design Rules
 
-## Design Rules (MUST FOLLOW)
+### Color
+- Deep dark: #000000 → #141414
+- No neon, no rainbow, no cheap gradients
+- Use 5-10+ curated colors
 
-### ❌ NEVER DO
-- Simple 2-3 color gradients
-- Bright neon colors (#00ff00, #ff00ff)
-- Rainbow gradients
-- Generic blue/purple tech gradients
-- Flat lifeless backgrounds
-- Basic box shadows
-
-### ✅ ALWAYS DO
-- Deep dark backgrounds (#000000 → #141414)
-- Complex color systems (5-10+ colors)
-- Liquid glass effects (blur + border + shadow)
-- Texture overlays (noise, grain)
-- Smooth animations (cubic-bezier easing)
-- Responsive design (mobile-first)
-
-## Liquid Glass CSS
+### Glass Effect
 ```css
-.liquid-glass {
-  background: rgba(255, 255, 255, 0.02);
+.glass {
+  background: rgba(255,255,255,0.02);
   backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset, 0 20px 40px -20px rgba(0, 0, 0, 0.5);
-}
-.liquid-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05) inset, 0 20px 40px -20px rgba(0,0,0,0.5);
 }
 ```
 
-## Color Palettes
-```css
-/* Ultra Dark */
---bg: #000000; --surface: #0a0a0a; --text: #f5f5f5; --text-muted: #666666;
-
-/* Warm Dark */
---bg: #0c0a09; --surface: #1c1917; --text: #fafaf9; --accent: #c8a882;
-
-/* Cool Dark */
---bg: #0a0a0f; --surface: #12121a; --text: #f0f0f5; --accent: #8ba4b8;
-```
-
-## Animation Pattern
+### Animation
 ```js
 // FadeUp
-hidden: { opacity: 0, y: 20 }
-visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
-
-// Stagger
-transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+{ opacity: 0, y: 20 } → { opacity: 1, y: 0 }
+// Easing: [0.16, 1, 0.3, 1]
 ```
+
+### Video Layers
+1. Video (object-cover)
+2. Gradient overlay (depth)
+3. Noise texture (grain)
+4. Vignette (edges)
+5. Content (z-10)
 
 ## Tech Stack
 - React 18 + TypeScript + Vite
 - Tailwind CSS 3.4+
-- Framer Motion
+- Framer Motion / GSAP
 - Lucide React
-- HLS.js (for video)
+- HLS.js
 
-## Example Workflow
-
-User: "我要一个AI创业公司的landing page"
-
-1. Select Template: 16 (Asme HLS) or 27 (Power AI)
-2. Read prompts.md for template 16 or 27
-3. Generate code with:
-   - Dark background
-   - Video background
-   - Liquid glass navbar
-   - Smooth animations
-   - Responsive design
+## Files
+- `SKILL.md` - This file
+- `prompts.md` - 35 detailed prompts
+- `README.md` - Documentation
