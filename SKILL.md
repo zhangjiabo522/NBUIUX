@@ -273,37 +273,115 @@ gap: 1.5rem;
 --text-9xl: clamp(8rem, 6.4rem + 8vw, 10rem);
 ```
 
-## 🎯 TEMPLATE CATEGORIES
+## 🎯 TEMPLATE CATEGORIES & PROMPT SYSTEM
 
-### 1. Cinematic & Premium (Templates 2, 3, 6, 7, 14, 15, 20, 21)
-- Full-screen video backgrounds
-- Liquid glass navigation
-- Smooth scroll animations
-- **For:** Luxury brands, entertainment, premium products
+### 📁 Prompt File Location
+All detailed prompts are stored in `prompts.md` file in the same directory as this SKILL.md file.
 
-### 2. Creative Portfolio (Templates 1, 10, 25)
-- Unique layouts
-- Interactive elements
-- Show-stopping animations
-- **For:** Designers, artists, agencies
+**To use:** Read the `prompts.md` file and find the corresponding template number based on user requirements.
 
-### 3. SaaS & Tech (Templates 5, 16, 27, 30)
-- Clean, modern design
-- Clear value proposition
-- Professional aesthetics
-- **For:** Startups, software companies
+---
 
-### 4. Web3 & NFT (Templates 18, 24)
-- Dark, immersive themes
-- Video showcases
-- Futuristic feel
-- **For:** Blockchain, crypto projects
+### 📋 Template Index
 
-### 5. Agency & Studio (Templates 11, 12, 22, 25)
-- Bold typography
-- Case study layouts
-- Team showcases
-- **For:** Creative agencies, consultancies
+| 编号 | 类型 | 示例 | 关键特性 |
+|------|------|------|----------|
+| 1 | 3D 创作者作品集 | Jack — 3D Creator | 磁性鼠标跟随、滚动驱动动画 |
+| 2-3 | 创意工作室 | Prisma（两个版本） | 液态玻璃、视频背景 |
+| 4 | 角色手办轮播 | TOONHUB | 3D轮播、交互式卡片 |
+| 5 | 太空旅行落地页 | 双视频循环 | 双视频循环 + 液态玻璃 |
+| 6 | 电影级 Hero | 视频淡入淡出循环 | 视频淡入淡出循环 |
+| 7 | VEX 品牌落地页 | 视频 + 液态玻璃导航 | 视频 + 液态玻璃导航 |
+| 8 | mėntality 心理健康 | 视频 + 搜索药丸组件 | 搜索药丸组件 |
+| 9 | SkyElite 私人飞机 | 汉堡菜单 + 重叠标题 | 汉堡菜单 + 重叠标题 |
+| 10 | Mainframe 创意机构 | 鼠标擦洗视频 + 打字机 | 鼠标擦洗视频 + 打字机 |
+| 11-12 | Axion Studio | shader 背景 + 特效 | shader 背景 + 特效 |
+| 13 | Mainframe 打字机 | 服务选择药丸 + 条件反馈 | 服务选择药丸 + 条件反馈 |
+| 14 | Asme 新闻通讯 | 视频淡入淡出循环 + 邮箱捕获 | 视频淡入淡出循环 + 邮箱捕获 |
+| 15 | Asme 完整 5 节页面 | 关于 + 特色视频 + 服务卡片 | 关于 + 特色视频 + 服务卡片 |
+| 16 | Asme HLS 视频 | hls.js + 邮箱捕获 + 打字机占位符 | hls.js + 邮箱捕获 + 打字机占位符 |
+| 17 | Michael Smith 作品集 | 加载屏幕 + GSAP + 视差画廊 | 加载屏幕 + GSAP + 视差画廊 |
+| 18 | Orbis.Nft | 太空 NFT 市场 + 液态玻璃卡片 | 太空 NFT 市场 + 液态玻璃卡片 |
+| 19 | VaultShield 密码管理器 | 图标内联标题 + 移动端抽屉 | 图标内联标题 + 移动端抽屉 |
+| 20 | 电影/流媒体 Hero | 底部模糊遮罩 + 移动端菜单 | 底部模糊遮罩 + 移动端菜单 |
+| 21 | 简单的视频 Hero | 最小版本 | 最小版本 |
+| 22 | LinkFlow | 回旋镖视频帧捕获 + 移动端菜单 | 回旋镖视频帧捕获 + 移动端菜单 |
+| 23 | Mindloop 内容平台 | HLS 视频 + 滚动驱动文字动画 | HLS 视频 + 滚动驱动文字动画 |
+| 24 | RIVR DeFi 仪表盘 | 自定义字体 + 底部卡片 | 自定义字体 + 底部卡片 |
+| 25 | Viktor Oddy 工作室 | 无限滚动 + 鼠标轨迹 + 轮播 | 无限滚动 + 鼠标轨迹 + 轮播 |
+| 26 | CodeNest | HLS + 网格线 + 液态玻璃卡片 | HLS + 网格线 + 液态玻璃卡片 |
+| 27 | Power AI | 大标题渐变 + Logo 跑马灯 | 大标题渐变 + Logo 跑马灯 |
+| 28 | Bloom | 双面板 + 液态玻璃层级 | 双面板 + 液态玻璃层级 |
+| 29 | MicroVisuals | 帧捕获回旋镖 + 视差鼠标 | 帧捕获回旋镖 + 视差鼠标 |
+| 30 | HLS 视频背景（简略） | 最小说明 | 最小说明 |
+| 31 | Fearless Vision | 堆叠标题 + 折叠菜单 | 堆叠标题 + 折叠菜单 |
+| 32 | Wanderful 旅行 | GSAP 视差 + 回旋镖视频 | GSAP 视差 + 回旋镖视频 |
+| 33 | SENTINEL AI | Spline 3D 背景 + shadcn | Spline 3D 背景 + shadcn |
+| 34 | DesignPro | ShinyText 渐变扫光 | ShinyText 渐变扫光 |
+| 35 | 假肢品牌 | 最小 Hero + 双药丸导航 | 最小 Hero + 双药丸导航 |
+
+---
+
+### 🔍 How to Select Template
+
+**Step 1: Identify the category**
+
+| 需求类型 | 推荐模板 |
+|----------|----------|
+| 3D作品集/个人品牌 | 1, 10, 17, 25 |
+| 创意工作室/代理机构 | 2, 3, 11, 12, 22 |
+| 电影级/高端品牌 | 5, 6, 7, 14, 15, 20, 21 |
+| SaaS/科技产品 | 16, 26, 27, 30 |
+| NFT/Web3 | 18, 24 |
+| 教育/课程 | 26, 34 |
+| 旅行/生活方式 | 5, 32 |
+| 安全/企业 | 19, 33 |
+| 内容平台/新闻通讯 | 8, 14, 23 |
+| 电商/产品展示 | 4, 31, 35 |
+
+**Step 2: Read the corresponding prompt**
+
+```
+Read prompts.md and find template number [X]
+```
+
+**Step 3: Generate code based on the prompt**
+
+Apply NBUIUX design rules (no cheap AI gradients, premium quality only)
+
+---
+
+### 🎨 Category Details
+
+#### 1. 创意作品集 (Templates 1, 10, 17, 25)
+- 独特布局
+- 交互元素
+- 惊艳动画
+- **适用：** 设计师、艺术家、代理机构
+
+#### 2. 创意工作室 (Templates 2, 3, 11, 12, 22)
+- 大胆字体
+- 案例研究布局
+- 团队展示
+- **适用：** 创意代理机构、咨询公司
+
+#### 3. 电影级 & 高端 (Templates 5, 6, 7, 14, 15, 20, 21)
+- 全屏视频背景
+- 液态玻璃导航
+- 平滑滚动动画
+- **适用：** 奢侈品牌、娱乐、高端产品
+
+#### 4. SaaS & 科技 (Templates 16, 26, 27, 30)
+- 简洁现代设计
+- 清晰价值主张
+- 专业美学
+- **适用：** 创业公司、软件公司
+
+#### 5. Web3 & NFT (Templates 18, 24)
+- 深色沉浸主题
+- 视频展示
+- 未来感
+- **适用：** 区块链、加密项目
 
 ## 📦 TECH STACK
 
