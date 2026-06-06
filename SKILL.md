@@ -5,7 +5,7 @@ license: MIT
 compatibility: opencode
 metadata:
   author: zhangjiabo522
-  version: 4.0.0
+  version: 5.0.0
   templates: 35
 ---
 
