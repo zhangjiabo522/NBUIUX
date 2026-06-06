@@ -5,7 +5,7 @@ license: MIT
 compatibility: opencode
 metadata:
   author: zhangjiabo522
-  version: 6.0.0
+  version: 7.0.0
   templates: 35
 ---
 
@@ -194,14 +194,41 @@ When user requests a landing page:
 }
 ```
 
-### Animation
+### Animation (Anime.js)
 ```js
 // FadeUp
-{ opacity: 0, y: 20 } → { opacity: 1, y: 0 }
-// Easing: [0.16, 1, 0.3, 1]
+anime({
+  targets: '.element',
+  opacity: [0, 1],
+  translateY: [20, 0],
+  duration: 800,
+  easing: 'easeOutExpo'
+});
 
 // Stagger
-transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+anime({
+  targets: '.element',
+  opacity: [0, 1],
+  translateY: [20, 0],
+  duration: 800,
+  delay: anime.stagger(100, {start: 300}),
+  easing: 'easeOutExpo'
+});
+
+// Scroll-Triggered
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      anime({
+        targets: entry.target,
+        opacity: [0, 1],
+        translateY: [50, 0],
+        duration: 1000,
+        easing: 'easeOutExpo'
+      });
+    }
+  });
+});
 ```
 
 ### Video Layers
@@ -214,7 +241,8 @@ transition: { staggerChildren: 0.1, delayChildren: 0.3 }
 ## Tech Stack
 - React 18 + TypeScript + Vite
 - Tailwind CSS 3.4+
-- Framer Motion / GSAP
+- **Anime.js** (primary animation library)
+- GSAP (complex scroll animations)
 - Lucide React
 - HLS.js
 
