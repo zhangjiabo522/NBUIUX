@@ -76,10 +76,59 @@ When user requests a landing page:
 
 ## Design Rules
 
-### Color
-- Deep dark: #000000 → #141414
-- No neon, no rainbow, no cheap gradients
-- Use 5-10+ curated colors
+### Color Palette (NO warm/yellow tones!)
+
+```css
+/* Pure Black & White */
+:root {
+  --bg: #000000;
+  --bg-surface: #0a0a0a;
+  --bg-elevated: #111111;
+  --bg-card: #141414;
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(255,255,255,0.12);
+  --text: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+}
+
+/* Cool Blue Accent */
+:root {
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-muted: rgba(59,130,246,0.15);
+}
+
+/* Cool Purple Accent */
+:root {
+  --accent: #8b5cf6;
+  --accent-hover: #a78bfa;
+  --accent-muted: rgba(139,92,246,0.15);
+}
+
+/* Cool Cyan Accent */
+:root {
+  --accent: #06b6d4;
+  --accent-hover: #22d3ee;
+  --accent-muted: rgba(6,182,212,0.15);
+}
+
+/* Neutral Gray (no color) */
+:root {
+  --accent: #e5e5e5;
+  --accent-hover: #f5f5f5;
+  --accent-muted: rgba(229,229,229,0.1);
+}
+```
+
+### ❌ BANNED Colors
+- #c8a882 (屎黄色)
+- #f59e0b (amber)
+- #fbbf24 (yellow)
+- #fcd34d (gold)
+- Any warm/yellow/orange tones
+- Neon colors
+- Rainbow gradients
 
 ### Glass Effect
 ```css
