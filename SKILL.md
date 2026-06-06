@@ -140,11 +140,369 @@ When user requests a landing page:
 }
 ```
 
-### Animation
+### 3D Effects
+
+#### Perspective Container
+```css
+.perspective-container {
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+}
+```
+
+#### 3D Card Tilt (Mouse Follow)
 ```js
-// FadeUp
-{ opacity: 0, y: 20 } → { opacity: 1, y: 0 }
-// Easing: [0.16, 1, 0.3, 1]
+// Framer Motion
+const [rotateX, setRotateX] = useState(0);
+const [rotateY, setRotateY] = useState(0);
+
+const handleMouseMove = (e) => {
+  const rect = e.currentTarget.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+  setRotateX((y - centerY) / 20);
+  setRotateY((centerX - x) / 20);
+};
+
+// In JSX
+<motion.div
+  animate={{ rotateX, rotateY }}
+  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+  style={{ transformStyle: "preserve-3d" }}
+>
+  <div style={{ transform: "translateZ(50px)" }}>Content</div>
+</motion.div>
+```
+
+#### 3D Floating Elements
+```css
+@keyframes float3d {
+  0%, 100% { transform: translateZ(0) rotateX(0) rotateY(0); }
+  25% { transform: translateZ(20px) rotateX(5deg) rotateY(5deg); }
+  50% { transform: translateZ(40px) rotateX(0) rotateY(10deg); }
+  75% { transform: translateZ(20px) rotateX(-5deg) rotateY(5deg); }
+}
+
+.float-3d {
+  animation: float3d 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+```
+
+### Mouse Particle Effects
+
+#### Particle Trail
+```js
+const ParticleTrail = () => {
+  const canvasRef = useRef(null);
+  const particles = useRef([]);
+  const mouse = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const addParticle = (x, y) => {
+      particles.current.push({
+        x, y,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2,
+        life: 1,
+        size: Math.random() * 3 + 1,
+        color: `hsla(${210 + Math.random() * 30}, 80%, 60%, `
+      });
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.current.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.02;
+        
+        if (p.life <= 0) {
+          particles.current.splice(i, 1);
+          return;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.life + ')';
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    const handleMouseMove = (e) => {
+      mouse.current = { x: e.clientX, y: e.clientY };
+      if (Math.random() > 0.5) addParticle(e.clientX, e.clientY);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    animate();
+
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none z-50" />;
+};
+```
+
+#### Glowing Cursor
+```js
+const GlowingCursor = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <motion.div
+      className="fixed pointer-events-none z-50"
+      animate={{
+        x: position.x - 20,
+        y: position.y - 20,
+        scale: isHovering ? 1.5 : 1,
+      }}
+      transition={{ type: "spring", stiffness: 500, damping: 28 }}
+    >
+      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500/30 to-purple-500/30 blur-xl" />
+    </motion.div>
+  );
+};
+```
+
+### Gravity Effects
+
+#### Falling Elements
+```js
+const GravityElement = ({ children }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [velocity, setVelocity] = useState({ x: 0, y: 0 });
+  const gravity = 0.5;
+  const friction = 0.99;
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const dx = e.clientX - centerX;
+      const dy = e.clientY - centerY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < 200) {
+        setVelocity(prev => ({
+          x: prev.x - (dx / distance) * 2,
+          y: prev.y - (dy / distance) * 2
+        }));
+      }
+    };
+
+    const animate = () => {
+      setVelocity(prev => ({
+        x: prev.x * friction,
+        y: prev.y * friction + gravity
+      }));
+      
+      setPosition(prev => ({
+        x: prev.x + velocity.x,
+        y: prev.y + velocity.y
+      }));
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+  }, []);
+
+  return (
+    <motion.div
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 100, damping: 10 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+```
+
+#### Magnetic Hover Effect
+```js
+const MagneticElement = ({ children, strength = 0.3 }) => {
+  const ref = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const rect = ref.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    const dx = e.clientX - centerX;
+    const dy = e.clientY - centerY;
+    
+    setPosition({
+      x: dx * strength,
+      y: dy * strength
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      animate={{ x: position.x, y: position.y }}
+      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {children}
+    </motion.div>
+  );
+};
+```
+
+### Scroll Animations
+
+#### Parallax Layer
+```js
+const ParallaxLayer = ({ children, speed = 0.5 }) => {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <motion.div
+      style={{ y: scrollY * speed }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+```
+
+#### Scroll-Triggered Reveal
+```js
+const ScrollReveal = ({ children, delay = 0 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+```
+
+### Text Animations
+
+#### Character Reveal
+```js
+const CharReveal = ({ text }) => {
+  return (
+    <motion.div>
+      {text.split('').map((char, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.03, duration: 0.5 }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
+```
+
+#### Gradient Text Sweep
+```js
+const GradientText = ({ children }) => {
+  return (
+    <motion.span
+      className="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent"
+      animate={{
+        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+      }}
+      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+      style={{ backgroundSize: "200% 200%" }}
+    >
+      {children}
+    </motion.span>
+  );
+};
+```
+
+### Hover Effects
+
+#### Scale & Glow
+```js
+const HoverCard = ({ children }) => {
+  return (
+    <motion.div
+      whileHover={{ 
+        scale: 1.05,
+        boxShadow: "0 0 30px rgba(59, 130, 246, 0.3)"
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
+```
+
+#### Border Gradient on Hover
+```css
+.hover-border {
+  position: relative;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s ease;
+}
+
+.hover-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-border:hover::before {
+  opacity: 1;
+}
 ```
 
 ### Video Layers
