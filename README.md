@@ -3,7 +3,7 @@
 <div align="center">
 
 ![NBUIUX Banner](https://img.shields.io/badge/NBUIUX-Premium%20UI%2FUX-000000?style=for-the-badge&logoColor=white)
-![Version](https://img.shields.io/badge/version-5.0.0-000000?style=for-the-badge&logoColor=white)
+![Version](https://img.shields.io/badge/version-6.0.0-000000?style=for-the-badge&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-000000?style=for-the-badge&logoColor=white)
 
 **创建看起来价值5万美元以上的高端UI/UX设计**
